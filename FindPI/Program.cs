@@ -14,24 +14,24 @@ namespace FindPI
             int threads = Convert.ToInt32(Console.ReadLine());
             List<FindPiThread> pie = new List<FindPiThread>();
             List<Thread> thread = new List<Thread>();
-            for (int i = 0; i < throws; i++) {
-                FindPiThread number1 = new FindPiThread(1);
+            for (int i = 0; i < threads; i++) {
+                FindPiThread number1 = new FindPiThread(throws);
                 pie.Add(number1);
                 Thread number2 = new Thread(new ThreadStart(number1.throwDarts));
                 thread.Add(number2);
                 number2.Start();
                 Thread.Sleep(16);
             }
-            for(int i = 0; i < throws; i++)
+            for(int i = 0; i < threads; i++)
             {
                 thread[i].Join();
             }
-            for(int i = 0; i < throws; i++)
+            int inside = 0;
+            for(int i = 0; i < threads; i++)
             {
-                int inside = pie[i].getCount();
-                Console.WriteLine(4 * Convert.ToDouble((inside) / (throws)));
+                inside += pie[i].getCount();
             }
-            
+            Console.WriteLine(4 * Convert.ToDouble((inside) / (throws * threads)));
         }
     }
     class FindPiThread
@@ -43,7 +43,7 @@ namespace FindPI
         {
             rnd1 = new Random();
             count = 0;
-            int totalDarts = darts;
+            totalDarts = darts;
         }
         public int getCount()
         {
