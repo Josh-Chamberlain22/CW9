@@ -1,11 +1,14 @@
-﻿using System;
+﻿//Name: Joshua Chamberlain
+//Date: 03-09-2022
+//Description: Monte Carlo simulation to calculate pi.
+using System;
 using System.Collections.Generic;
 using System.Threading;
 
 namespace FindPI
 {
     class Program
-    {
+    {   //Creates threads that throw darts and calculates pi using the conversion below.
         static void Main(string[] args)
         {
             Console.WriteLine("Please enter the number of throws: ");
@@ -39,16 +42,21 @@ namespace FindPI
         int totalDarts;
         int count;
         Random rnd1;
+        //Constructor for a FindPiThread object
         public FindPiThread(int darts)
         {
             rnd1 = new Random();
             count = 0;
             totalDarts = darts;
         }
+        //Accessor for count
         public int getCount()
         {
             return count;
         }
+        /// <summary>
+        /// Randomly creates an x and y position that the dart lands on. Then calculates whether that was inside the circle
+        /// </summary>
         public void throwDarts()
         {
             for(int i = 0; i < totalDarts; i++)
