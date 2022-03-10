@@ -31,7 +31,7 @@ namespace FindPI
             {
                 inside += pie[i].getCount();
             }
-            Console.WriteLine(4 * Convert.ToDouble((inside) / (throws * threads)));
+            Console.WriteLine(4 * (Convert.ToDouble((inside)) / (throws * threads)));
         }
     }
     class FindPiThread
